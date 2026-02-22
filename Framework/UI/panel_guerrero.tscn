@@ -1,0 +1,73 @@
+[gd_scene load_steps=7 format=3 uid="uid://cvk1cut1riudo"]
+
+[ext_resource type="Script" path="res://Framework/UI/panel_guerrero.gd" id="1_eqbk4"]
+[ext_resource type="FontFile" uid="uid://hxkkkbpf382s" path="res://assets/Pixellari.ttf" id="2_c7cx5"]
+[ext_resource type="Texture2D" uid="uid://b5pc1fodx5lgb" path="res://assets/TarjetaArquero.png" id="2_re02d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k4ibl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_eifbn"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_shnhn"]
+bg_color = Color(1, 0.673571, 0.619516, 1)
+
+[node name="PanelGuerrero" type="Panel"]
+custom_minimum_size = Vector2(31, 41)
+offset_right = 31.0
+offset_bottom = 41.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_k4ibl")
+script = ExtResource("1_eqbk4")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 649.0
+offset_bottom = 891.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("2_re02d")
+stretch_mode = 4
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 19.0
+offset_right = -4.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_eifbn")
+theme_override_styles/fill = SubResource("StyleBoxFlat_shnhn")
+show_percentage = false
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -18.0
+offset_right = -3.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_c7cx5")
+theme_override_font_sizes/font_size = 8
+text = "99"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

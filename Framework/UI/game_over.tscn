@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://u80us8sbhnm2"]
+
+[ext_resource type="Texture2D" uid="uid://bp6anqtpe5bf" path="res://assets/AssetMenu/Letrero.png" id="1_722dw"]
+[ext_resource type="Script" path="res://Framework/UI/game_over.gd" id="1_snxmd"]
+[ext_resource type="AudioStream" uid="uid://bnxh5jqytolpw" path="res://MusicSound/GameOver.mp3" id="3_v5dm8"]
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_snxmd")
+
+[node name="Fondo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 4110.0
+offset_bottom = 2290.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_722dw")
+
+[node name="GameOver" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.00125077, 0, 0.588496, 1)
+text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Reintentar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 91.0
+offset_top = 138.0
+offset_right = 196.0
+offset_bottom = 169.0
+text = "REINTENTAR"
+
+[node name="Menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 253.0
+offset_top = 138.0
+offset_right = 310.0
+offset_bottom = 169.0
+text = "MENU"
+
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_v5dm8")
+
+[connection signal="pressed" from="Reintentar" to="." method="_on_reintentar_pressed"]
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]

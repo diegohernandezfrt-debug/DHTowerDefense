@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=3 uid="uid://dajtfu2y7bbjq"]
+
+[ext_resource type="Texture2D" uid="uid://bp6anqtpe5bf" path="res://assets/AssetMenu/Letrero.png" id="1_3pp2u"]
+[ext_resource type="Script" path="res://Framework/UI/victoria.gd" id="1_kt1i5"]
+[ext_resource type="Texture2D" uid="uid://cl42cfsc7n775" path="res://assets/AssetMenu/MarcoMenu.png" id="2_2uwua"]
+[ext_resource type="AudioStream" uid="uid://fco16bresduh" path="res://MusicSound/NivelCompletado.mp3" id="4_7xf0g"]
+
+[node name="Victoria" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kt1i5")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.235294)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 7.0
+offset_right = 2145.0
+offset_bottom = 1657.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_3pp2u")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect"]
+layout_mode = 0
+offset_left = -270.0
+offset_top = -40.0
+offset_right = 2280.0
+offset_bottom = 1690.0
+texture = ExtResource("2_2uwua")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 133.0
+offset_top = 41.0
+offset_right = 280.0
+offset_bottom = 134.0
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0.545098, 1)
+text = "VICTORIA"
+horizontal_alignment = 1
+
+[node name="Siguiente" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Siguiente nivel"
+
+[node name="Menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "MENU"
+
+[node name="NivelCompletado" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_7xf0g")
+volume_db = -4.0
+
+[connection signal="pressed" from="VBoxContainer/Siguiente" to="." method="_on_siguiente_pressed"]
+[connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_menu_pressed"]

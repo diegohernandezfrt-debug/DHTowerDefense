@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://fl2a3ya2cmy6"]
+
+[ext_resource type="Script" path="res://Objetos/hacha.gd" id="1_ejslx"]
+[ext_resource type="PackedScene" uid="uid://cvc2xojchb4yb" path="res://Objetos/hacha_impacto.tscn" id="2_k4n1k"]
+[ext_resource type="Texture2D" uid="uid://cakjn2n4lit0y" path="res://assets/Hacha.png" id="2_uejss"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lamxy"]
+radius = 6.0
+
+[node name="Hacha" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_ejslx")
+BALA_IMPACTO = ExtResource("2_k4n1k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.90735e-06, 1)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("2_uejss")
+hframes = 3
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lamxy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(5.96046e-08, 0)
+scale = Vector2(0.3, 0.3)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

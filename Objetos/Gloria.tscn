@@ -1,0 +1,81 @@
+[gd_scene load_steps=9 format=3 uid="uid://dqys4mewkyk03"]
+
+[ext_resource type="Script" path="res://Objetos/Gloria.gd" id="1_nvv28"]
+[ext_resource type="Texture2D" uid="uid://d1vno42gqehua" path="res://assets/Gloria.png" id="2_r4iw2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6wva7"]
+atlas = ExtResource("2_r4iw2")
+region = Rect2(0, 0, 512, 463)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jgppm"]
+atlas = ExtResource("2_r4iw2")
+region = Rect2(512, 0, 512, 463)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yx8dy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6wva7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jgppm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8q7uu"]
+
+[sub_resource type="Animation" id="Animation_tqmtu"]
+resource_name = "start"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(-5, 10), Vector2(-5, -10), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.015, 0.015), Vector2(0.048, 0.048)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cgyw6"]
+_data = {
+"start": SubResource("Animation_tqmtu")
+}
+
+[node name="Gloria" type="Area2D"]
+script = ExtResource("1_nvv28")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-5, 10)
+scale = Vector2(0.015, 0.015)
+sprite_frames = SubResource("SpriteFrames_yx8dy")
+frame = 1
+frame_progress = 0.224233
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_8q7uu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cgyw6")
+}
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

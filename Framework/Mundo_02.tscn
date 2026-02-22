@@ -1,0 +1,69 @@
+[gd_scene load_steps=8 format=3 uid="uid://igi53dpeo274"]
+
+[ext_resource type="Script" path="res://Framework/Mundo_02.gd" id="1_y611d"]
+[ext_resource type="PackedScene" uid="uid://wukaywdpf7as" path="res://Framework/Clases/Enemigos/enemigo.tscn" id="2_hfdpd"]
+[ext_resource type="Texture2D" uid="uid://dqnoo62f2ib0a" path="res://assets/FondoDiaBase.png" id="3_iw0uu"]
+[ext_resource type="PackedScene" uid="uid://wwd30t1lsgqc" path="res://Framework/Clases/Enemigos/hombre_lobo.tscn" id="3_wic2o"]
+[ext_resource type="PackedScene" uid="uid://i6d15tccx40x" path="res://Framework/UI/hud.tscn" id="4_umv3t"]
+[ext_resource type="PackedScene" uid="uid://cadw6p7ob1pi6" path="res://Framework/Clases/cursor_guerrero.tscn" id="5_sjoun"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jknyt"]
+size = Vector2(20, 193)
+
+[node name="World02" type="Node2D" node_paths=PackedStringArray("posiciones_filas", "nodo_lineas")]
+script = ExtResource("1_y611d")
+gloria_inicial = 400
+cantidad_de_oleadas = 5
+enemigos_por_oleada = Array[int]([3, 5, 7, 9, 12, 14])
+tiempo_de_oleadas = Array[float]([4.0, 11.0, 11.0, 16.0, 18.0, 20.0])
+enemigo_disponibles = Array[PackedScene]([ExtResource("2_hfdpd"), ExtResource("3_wic2o")])
+posiciones_filas = [NodePath("Lineas/Marker2D"), NodePath("Lineas/Marker2D2"), NodePath("Lineas/Marker2D3"), NodePath("Lineas/Marker2D4"), NodePath("Lineas/Marker2D5")]
+nodo_lineas = NodePath("Lineas")
+
+[node name="Fondo" type="Sprite2D" parent="."]
+position = Vector2(223, 117.156)
+scale = Vector2(0.598508, 0.599219)
+texture = ExtResource("3_iw0uu")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="CanvasLayer" instance=ExtResource("4_umv3t")]
+
+[node name="CursorGuerrero" parent="." instance=ExtResource("5_sjoun")]
+z_index = 10
+
+[node name="Celdas" type="Node2D" parent="."]
+position = Vector2(80, 31)
+
+[node name="Guerreros" type="Node2D" parent="."]
+
+[node name="Lineas" type="Node2D" parent="."]
+position = Vector2(434, 63)
+
+[node name="Marker2D" type="Marker2D" parent="Lineas"]
+position = Vector2(-4, -5)
+
+[node name="Marker2D2" type="Marker2D" parent="Lineas"]
+position = Vector2(0, 34)
+
+[node name="Marker2D3" type="Marker2D" parent="Lineas"]
+position = Vector2(-1, 74)
+
+[node name="Marker2D4" type="Marker2D" parent="Lineas"]
+position = Vector2(0, 109)
+
+[node name="Marker2D5" type="Marker2D" parent="Lineas"]
+position = Vector2(0, 148)
+
+[node name="AreaGameOver" type="Area2D" parent="."]
+position = Vector2(74, 36)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="ZonaGameOver" type="CollisionShape2D" parent="AreaGameOver"]
+light_mask = 4
+position = Vector2(-12, 96)
+shape = SubResource("RectangleShape2D_jknyt")
+
+[connection signal="area_entered" from="AreaGameOver" to="." method="_on_area_game_over_area_entered"]

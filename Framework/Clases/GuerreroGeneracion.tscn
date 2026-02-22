@@ -1,0 +1,140 @@
+[gd_scene load_steps=11 format=3 uid="uid://bllywftw3x35v"]
+
+[ext_resource type="Script" path="res://Framework/Clases/GuerreroGeneracion.gd" id="1_6pm30"]
+[ext_resource type="PackedScene" uid="uid://dqys4mewkyk03" path="res://Objetos/Gloria.tscn" id="2_b8555"]
+[ext_resource type="Texture2D" uid="uid://bfqa8e7dfyts0" path="res://assets/MonjaFram-fondo.png" id="3_di1hw"]
+[ext_resource type="AudioStream" uid="uid://cb46koj3g2ety" path="res://MusicSound/Monedas.mp3" id="4_6fc0n"]
+
+[sub_resource type="Animation" id="Animation_vfu6e"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_civm6"]
+resource_name = "reposo"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-1, -12), Vector2(1, -12), Vector2(2, -12), Vector2(3, -12), Vector2(3, -12), Vector2(3, -12), Vector2(2, -12), Vector2(1, -12), Vector2(0, -12), Vector2(-1, -12)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_aa8kl"]
+_data = {
+"RESET": SubResource("Animation_vfu6e"),
+"reposo": SubResource("Animation_civm6")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oeafu"]
+size = Vector2(23, 26)
+
+[sub_resource type="Animation" id="Animation_qyp6g"]
+resource_name = "impacto"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.0941176, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.2, 0.2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4w4kd"]
+_data = {
+"impacto": SubResource("Animation_qyp6g")
+}
+
+[node name="GuerreroGeneracion" type="Node2D" node_paths=PackedStringArray("animacion", "animacion_impacto")]
+script = ExtResource("1_6pm30")
+escena_gloria = ExtResource("2_b8555")
+vida_maxima = 50.0
+animacion = NodePath("AnimationPlayer")
+animacion_impacto = NodePath("AnimacionImpacto")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("3_di1hw")
+offset = Vector2(0, -11)
+hframes = 6
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_aa8kl")
+}
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_oeafu")
+debug_color = Color(0.292826, 0.629441, 0, 0.42)
+
+[node name="AnimacionImpacto" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4w4kd")
+}
+
+[node name="MonedaGloria" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_6fc0n")

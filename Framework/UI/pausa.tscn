@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpj7oyoq2yn7j"]
+
+[ext_resource type="Script" path="res://Framework/UI/pausa.gd" id="1_xx7rg"]
+
+[node name="Pausa" type="Control"]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xx7rg")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.65098)
+layout_mode = 0
+offset_right = 412.0
+offset_bottom = 230.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 165.0
+offset_top = 59.0
+offset_right = 216.0
+offset_bottom = 82.0
+text = "PAUSE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 221.0
+offset_top = 116.0
+offset_right = 274.0
+offset_bottom = 147.0
+text = "Menu"
+
+[node name="Reanudar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 79.0
+offset_top = 116.0
+offset_right = 173.0
+offset_bottom = 147.0
+text = "Reaunudar"
+
+[connection signal="pressed" from="Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="Reanudar" to="." method="_on_reanudar_pressed"]

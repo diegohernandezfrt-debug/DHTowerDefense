@@ -1,0 +1,171 @@
+[gd_scene load_steps=16 format=3 uid="uid://b0o7amg0o6fl"]
+
+[ext_resource type="Script" path="res://Framework/Clases/GuerreroDefensa.gd" id="1_00x5g"]
+[ext_resource type="Texture2D" uid="uid://e4fjwxeutu2m" path="res://assets/EscuderoFrames.png" id="2_d8idd"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ekhy0"]
+atlas = ExtResource("2_d8idd")
+region = Rect2(0, 0, 276, 391)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq67c"]
+atlas = ExtResource("2_d8idd")
+region = Rect2(271, 0, 245, 391)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0r65"]
+atlas = ExtResource("2_d8idd")
+region = Rect2(514, 0, 251, 391)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1qdhe"]
+atlas = ExtResource("2_d8idd")
+region = Rect2(756, 0, 252, 391)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mvoaf"]
+atlas = ExtResource("2_d8idd")
+region = Rect2(1004, 0, 248, 391)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbbc6"]
+atlas = ExtResource("2_d8idd")
+region = Rect2(1255, 0, 248, 391)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yii1e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ekhy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jq67c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0r65")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1qdhe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mvoaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbbc6")
+}],
+"loop": true,
+"name": &"reposo",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_uv5tb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_tqy2t"]
+resource_name = "reposo"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, -3)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_texud"]
+_data = {
+"RESET": SubResource("Animation_uv5tb"),
+"reposo": SubResource("Animation_tqy2t")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_waq02"]
+size = Vector2(22, 29)
+
+[sub_resource type="Animation" id="Animation_qyp6g"]
+resource_name = "impacto"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.0941176, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.12, 0.12), Vector2(0.1, 0.1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4w4kd"]
+_data = {
+"impacto": SubResource("Animation_qyp6g")
+}
+
+[node name="GuerreroDefensa" type="Node2D" node_paths=PackedStringArray("animacion", "animacion_impacto")]
+script = ExtResource("1_00x5g")
+animacion = NodePath("AnimationPlayer")
+animacion_impacto = NodePath("AnimacionImpacto")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -3)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_yii1e")
+animation = &"reposo"
+offset = Vector2(0, -11)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_texud")
+}
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(1, -0.5)
+shape = SubResource("RectangleShape2D_waq02")
+debug_color = Color(0.292826, 0.629441, 0, 0.42)
+
+[node name="AnimacionImpacto" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4w4kd")
+}

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bigyisluyqugm"]
+
+[ext_resource type="Script" path="res://Objetos/bala.gd" id="1_4nm1d"]
+[ext_resource type="Texture2D" uid="uid://cxp0sk2o1fsyp" path="res://assets/FlechaImpacto.png" id="2_16kml"]
+[ext_resource type="PackedScene" uid="uid://c045ktjgg4dja" path="res://Objetos/bala_impacto.tscn" id="2_mq7xi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lamxy"]
+radius = 6.0
+
+[node name="Bala" type="Area2D"]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("1_4nm1d")
+BALA_IMPACTO = ExtResource("2_mq7xi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.055, 0.055)
+texture = ExtResource("2_16kml")
+hframes = 3
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lamxy")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(5.96046e-08, 0)
+scale = Vector2(0.3, 0.3)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

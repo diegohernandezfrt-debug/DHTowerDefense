@@ -1,0 +1,54 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpj75q3ek5ppx"]
+
+[ext_resource type="Script" path="res://Framework/UI/victoria_final.gd" id="1_cfce4"]
+[ext_resource type="AudioStream" uid="uid://cpc82jerrvlib" path="res://MusicSound/CampañaCompletada.mp3" id="2_tmhey"]
+
+[node name="VictoriaFinal" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cfce4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 409.0
+offset_bottom = 230.0
+color = Color(0, 0, 0, 0.392157)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 410.0
+offset_bottom = 229.0
+
+[node name="Titulo" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 26
+text = "¡CAMPAÑA COMPLETADA!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Mensaje" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Has completado los 5 niveles.
+Tu estrategia y liderazgo han prevalecido.
+
+Aprender a crear este juego solo no fue facil
+es sencillo, pero con mucho esfuerzo.
+Gracias por jugar."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Menu" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "MENU"
+
+[node name="CampañaCompletada" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_tmhey")
+volume_db = -8.0
+
+[connection signal="pressed" from="VBoxContainer/Menu" to="." method="_on_menu_pressed"]

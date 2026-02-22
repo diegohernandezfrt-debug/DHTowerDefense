@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5nnctikoxutx"]
+
+[ext_resource type="Texture2D" uid="uid://bslrabn5qm1c1" path="res://assets/Lanza.png" id="1_o7735"]
+[ext_resource type="Script" path="res://AnimatedSprite2D.gd" id="2_hrng2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6fbm"]
+atlas = ExtResource("1_o7735")
+region = Rect2(0, 0, 1536, 216)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ynbnk"]
+atlas = ExtResource("1_o7735")
+region = Rect2(0, 246, 1536, 246)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2hnk0"]
+atlas = ExtResource("1_o7735")
+region = Rect2(0, 656, 1536, 328)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_k1k5m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6fbm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ynbnk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2hnk0")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="BalaImpacto" type="AnimatedSprite2D"]
+scale = Vector2(0.03, 0.03)
+sprite_frames = SubResource("SpriteFrames_k1k5m")
+frame = 3
+frame_progress = 1.0
+script = ExtResource("2_hrng2")
+
+[connection signal="animation_finished" from="." to="." method="_on_animation_finished"]

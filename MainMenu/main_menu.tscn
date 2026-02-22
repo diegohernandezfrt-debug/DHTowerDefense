@@ -1,0 +1,303 @@
+[gd_scene load_steps=13 format=3 uid="uid://cndq8k3u5o0p4"]
+
+[ext_resource type="Script" path="res://MainMenu/MainMenu.gd" id="1_8wsuy"]
+[ext_resource type="Texture2D" uid="uid://bierh2vgm53rl" path="res://assets/AssetMenu/FondoMenu.png" id="2_g2cnk"]
+[ext_resource type="Texture2D" uid="uid://cgpss1j0pyekk" path="res://assets/AssetMenu/PersonajesMenuIzq.png" id="3_7f4xw"]
+[ext_resource type="Texture2D" uid="uid://bp6anqtpe5bf" path="res://assets/AssetMenu/Letrero.png" id="4_1075k"]
+[ext_resource type="Texture2D" uid="uid://c72lgah50gw13" path="res://assets/AssetMenu/PersonajesMenuDerch.png" id="4_qbc65"]
+[ext_resource type="Texture2D" uid="uid://cl42cfsc7n775" path="res://assets/AssetMenu/MarcoMenu.png" id="5_a6ree"]
+[ext_resource type="AudioStream" uid="uid://b0crvved2b5fq" path="res://MusicSound/MusicaFondoPrueba.mp3" id="6_oq3ym"]
+
+[sub_resource type="Animation" id="Animation_pbl0o"]
+resource_name = "MenuMovimiento"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Letrero:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marco:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Letrero:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.08, 0.08), Vector2(0.1, 0.1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Marco:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.08, 0.08), Vector2(0.1, 0.1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Boton:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.8, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="Animation" id="Animation_51c0e"]
+resource_name = "PersonajesMovimiento"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PersonajesIzq:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8001, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.23, 0.23), Vector2(0.21, 0.21), Vector2(0.23, 0.23), Vector2(0.21, 0.21), Vector2(0.23, 0.23)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PersonajesIzq:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 66), Vector2(0, 72), Vector2(1, 78), Vector2(2, 88), Vector2(2, 98), Vector2(0, 88), Vector2(0, 78), Vector2(0, 88), Vector2(0, 98), Vector2(1, 88), Vector2(0, 78)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tnb54"]
+_data = {
+"MenuMovimiento": SubResource("Animation_pbl0o"),
+"PersonajesMovimiento": SubResource("Animation_51c0e")
+}
+
+[sub_resource type="Animation" id="Animation_mm4eh"]
+resource_name = "personajes"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PersonajesIzq:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.223572, 0.223572), Vector2(0.23, 0.23)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PersonajesDerch:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.224, 0.224), Vector2(0.23, 0.23)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PersonajesIzq:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1, 85), Vector2(1, 85)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PersonajesDerch:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(246, 78), Vector2(240, 78)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6ivox"]
+_data = {
+"personajes": SubResource("Animation_mm4eh")
+}
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8wsuy")
+
+[node name="Fondo" type="TextureRect" parent="."]
+layout_direction = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1126.0
+offset_bottom = 794.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.27, 0.27)
+texture = ExtResource("2_g2cnk")
+stretch_mode = 6
+
+[node name="PersonajesIzq" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 85.0
+offset_right = 519.0
+offset_bottom = 499.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.22711, 0.22711)
+texture = ExtResource("3_7f4xw")
+
+[node name="PersonajesDerch" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 242.697
+offset_top = 78.0
+offset_right = 567.697
+offset_bottom = 526.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.227303, 0.227303)
+texture = ExtResource("4_qbc65")
+
+[node name="Letrero" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -84.0
+offset_top = -113.0
+offset_right = 1452.0
+offset_bottom = 911.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("4_1075k")
+
+[node name="Marco" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 102.0
+offset_top = -5.0
+offset_right = 2032.0
+offset_bottom = 1125.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_a6ree")
+
+[node name="Boton" type="Button" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 134.0
+offset_top = 19.0
+offset_right = 262.0
+offset_bottom = 84.0
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_normal_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_hover_pressed_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/icon_disabled_color = Color(0, 0, 0, 0)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 19.0
+offset_right = 262.0
+offset_bottom = 85.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.321569)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 0)
+text = "PLAY"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tnb54")
+}
+
+[node name="Musica" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_oq3ym")
+volume_db = 0.5
+
+[node name="Personajes" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6ivox")
+}
+
+[connection signal="mouse_entered" from="Boton" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Boton" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Boton" to="." method="_on_button_pressed"]

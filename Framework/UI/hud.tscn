@@ -1,0 +1,185 @@
+[gd_scene load_steps=18 format=3 uid="uid://i6d15tccx40x"]
+
+[ext_resource type="Script" path="res://Framework/UI/hud.gd" id="1_itbix"]
+[ext_resource type="FontFile" uid="uid://hxkkkbpf382s" path="res://assets/Pixellari.ttf" id="2_qarbq"]
+[ext_resource type="Texture2D" uid="uid://d1vno42gqehua" path="res://assets/Gloria.png" id="2_ur18p"]
+[ext_resource type="PackedScene" uid="uid://cvk1cut1riudo" path="res://Framework/UI/panel_guerrero.tscn" id="4_bt114"]
+[ext_resource type="Texture2D" uid="uid://dv1g7j4442gkt" path="res://assets/TarjetaMonja.png" id="5_lim7k"]
+[ext_resource type="PackedScene" uid="uid://dbg4g2nbklkuv" path="res://Objetos/Guerreros/girasol.tscn" id="6_4m0bd"]
+[ext_resource type="Texture2D" uid="uid://b5pc1fodx5lgb" path="res://assets/TarjetaArquero.png" id="7_5sxln"]
+[ext_resource type="PackedScene" uid="uid://gvbb06hqvhia" path="res://Objetos/Guerreros/lanza_guisantes.tscn" id="8_7jgit"]
+[ext_resource type="Texture2D" uid="uid://bcypwbwxslmc5" path="res://assets/TarjetaEscudero.png" id="9_uqhto"]
+[ext_resource type="PackedScene" uid="uid://b0o7amg0o6fl" path="res://Framework/Clases/GuerreroDefensa.tscn" id="10_17gn7"]
+[ext_resource type="Texture2D" uid="uid://cyliqewo8nyxs" path="res://assets/TarjetaLancero.png" id="11_pf00a"]
+[ext_resource type="PackedScene" uid="uid://ccqe4034hu1rf" path="res://Framework/Clases/GuerreroLanza.tscn" id="12_677ev"]
+[ext_resource type="Texture2D" uid="uid://1nxd6d8btg71" path="res://assets/TarjetaGHacha.png" id="13_2qr0w"]
+[ext_resource type="PackedScene" uid="uid://mm5i0bhr56xx" path="res://Framework/Clases/GuerreroHacha.tscn" id="13_js8ya"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pm14n"]
+bg_color = Color(0.360784, 0, 0.458824, 0.584314)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pmtkm"]
+atlas = ExtResource("2_ur18p")
+region = Rect2(37, 25, 420, 420)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gvv7n"]
+bg_color = Color(0.4, 0.133333, 0, 1)
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_itbix")
+
+[node name="Gloria" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 55.0
+offset_top = 4.0
+offset_right = 120.0
+offset_bottom = 22.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pm14n")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Gloria"]
+custom_minimum_size = Vector2(0, 22)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="Gloria/HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_pmtkm")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Gloria/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 2
+
+[node name="Label" type="Label" parent="Gloria/HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.241156, 0.241156, 0.241156, 1)
+theme_override_constants/outline_size = -4
+theme_override_fonts/font = ExtResource("2_qarbq")
+theme_override_font_sizes/font_size = 15
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Panel" type="Panel" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = 6.0
+offset_right = 43.0
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.37
+offset_left = 1.0
+offset_top = 2.0
+offset_bottom = -57.85
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelGuerrero" parent="Panel/VBoxContainer" instance=ExtResource("4_bt114")]
+layout_mode = 2
+textura = ExtResource("5_lim7k")
+guerrero_a_colocar = ExtResource("6_4m0bd")
+
+[node name="PanelGuerrero2" parent="Panel/VBoxContainer" instance=ExtResource("4_bt114")]
+layout_mode = 2
+textura = ExtResource("7_5sxln")
+tiempo_de_recuperacion = 3.0
+precio_gloria = 100
+guerrero_a_colocar = ExtResource("8_7jgit")
+
+[node name="PanelGuerrero3" parent="Panel/VBoxContainer" instance=ExtResource("4_bt114")]
+layout_mode = 2
+textura = ExtResource("9_uqhto")
+tiempo_de_recuperacion = 5.0
+guerrero_a_colocar = ExtResource("10_17gn7")
+nivel_requerido = 2
+
+[node name="PanelGuerrero4" parent="Panel/VBoxContainer" instance=ExtResource("4_bt114")]
+layout_mode = 2
+textura = ExtResource("11_pf00a")
+tiempo_de_recuperacion = 5.0
+precio_gloria = 125
+guerrero_a_colocar = ExtResource("12_677ev")
+nivel_requerido = 3
+
+[node name="PanelGuerrero5" parent="Panel/VBoxContainer" instance=ExtResource("4_bt114")]
+layout_mode = 2
+textura = ExtResource("13_2qr0w")
+tiempo_de_recuperacion = 5.0
+precio_gloria = 150
+guerrero_a_colocar = ExtResource("13_js8ya")
+nivel_requerido = 5
+
+[node name="B_Cancel" type="Button" parent="."]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 172.0
+offset_top = -226.0
+offset_right = 192.0
+offset_bottom = -206.0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("2_qarbq")
+theme_override_font_sizes/font_size = 12
+theme_override_styles/normal = SubResource("StyleBoxFlat_gvv7n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_gvv7n")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_gvv7n")
+theme_override_styles/focus = SubResource("StyleBoxFlat_gvv7n")
+text = "X"
+
+[node name="BarraOleada" type="ProgressBar" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -148.0
+offset_bottom = 27.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.637724, 0.000539834, 0.688677, 1)
+theme_override_fonts/font = ExtResource("2_qarbq")
+
+[node name="OleadaLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -189.0
+offset_top = 1.0
+offset_right = -149.0
+offset_bottom = 24.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(0.639216, 0, 0.690196, 1)
+theme_override_fonts/font = ExtResource("2_qarbq")
+text = "Oleada 1"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[connection signal="button_down" from="B_Cancel" to="." method="_on_b_cancel_button_down"]

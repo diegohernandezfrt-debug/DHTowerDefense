@@ -1,0 +1,337 @@
+[gd_scene load_steps=22 format=3 uid="uid://ccqe4034hu1rf"]
+
+[ext_resource type="Script" path="res://Framework/Clases/GuerreroLanza.gd" id="1_8bsb6"]
+[ext_resource type="Texture2D" uid="uid://bh5q1jheo42x4" path="res://assets/LanceroAtaque.png" id="1_slm3e"]
+[ext_resource type="Texture2D" uid="uid://clox4tnapg10m" path="res://assets/LanceroReposo1.png" id="2_ld02i"]
+[ext_resource type="PackedScene" uid="uid://duh2gnwk52xyq" path="res://Objetos/lanza.tscn" id="2_ldtqa"]
+[ext_resource type="Texture2D" uid="uid://ql4p2otwws14" path="res://assets/ArqueroReposo.png" id="3_fbt05"]
+[ext_resource type="AudioStream" uid="uid://dfvuk25ai8s06" path="res://MusicSound/Flecha.mp3" id="6_6n225"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73q5u"]
+atlas = ExtResource("2_ld02i")
+region = Rect2(0, 0, 364, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_47csu"]
+atlas = ExtResource("2_ld02i")
+region = Rect2(440, 0, 440, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxlk2"]
+atlas = ExtResource("2_ld02i")
+region = Rect2(978, 0, 489, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jyee4"]
+atlas = ExtResource("2_ld02i")
+region = Rect2(0, 512, 569, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fu6kc"]
+atlas = ExtResource("1_slm3e")
+region = Rect2(0, 0, 416, 513)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iq7d"]
+atlas = ExtResource("1_slm3e")
+region = Rect2(475, 0, 475, 512)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jn50o"]
+atlas = ExtResource("1_slm3e")
+region = Rect2(0, 512, 475, 512)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bwt8v"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_73q5u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_47csu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxlk2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jyee4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fu6kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iq7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jn50o")
+}],
+"loop": true,
+"name": &"reposo",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_ybpmu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+
+[sub_resource type="Animation" id="Animation_rjsps"]
+resource_name = "ataque"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 5]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -14), Vector2(1, -14), Vector2(1, -13), Vector2(1, -13)]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawnear_bala"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_t728v"]
+resource_name = "reposo"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3001, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 2, 1, 0, 1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(0, -12), Vector2(1, -12), Vector2(2, -12), Vector2(1, -12), Vector2(0, -12), Vector2(-2, -12), Vector2(-1.5, -12), Vector2(-1, -12)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:texture")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_fbt05")]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:hframes")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:speed_scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.09, 0.09, 0.09, 0.09, 0.09, 0.09, 0.09, 0.09]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ycqo"]
+_data = {
+"RESET": SubResource("Animation_ybpmu"),
+"ataque": SubResource("Animation_rjsps"),
+"reposo": SubResource("Animation_t728v")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_esfv3"]
+size = Vector2(23, 30)
+
+[sub_resource type="Animation" id="Animation_qyp6g"]
+resource_name = "impacto"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0.0941176, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.09, 0.09), Vector2(0.08, 0.08)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4w4kd"]
+_data = {
+"impacto": SubResource("Animation_qyp6g")
+}
+
+[node name="GuerreroLanza" type="Node2D" node_paths=PackedStringArray("animacion", "animacion_impacto")]
+script = ExtResource("1_8bsb6")
+bala_instancia = ExtResource("2_ldtqa")
+animacion = NodePath("AnimationPlayer")
+animacion_impacto = NodePath("AnimacionImpacto")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_bwt8v")
+animation = &"reposo"
+speed_scale = 0.09
+offset = Vector2(0, -10)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+"": SubResource("AnimationLibrary_1ycqo")
+}
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(12, -23)
+
+[node name="HitBox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_esfv3")
+debug_color = Color(0.292826, 0.629441, 0, 0.42)
+
+[node name="AnimacionImpacto" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4w4kd")
+}
+
+[node name="TensarArco" type="AudioStreamPlayer2D" parent="."]
+volume_db = 10.0
+
+[node name="Flecha" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_6n225")
+volume_db = -10.0
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
